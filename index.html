@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn vocabulary efficiently with the spaced repetition method">
+  <title>WordSpace | Spaced Repetition Vocabulary System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Critical CSS for initial load */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.8; }
+    }
+    .initial-loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: #f8fafc;
+    }
+    .dark .initial-loader {
+      background-color: #0f172a;
+    }
+    .loader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .loader-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: #4f46e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .loader-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      color: #1e293b;
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .dark .loader-text {
+      color: #f8fafc;
+    }
+    
+    /* CSS for flip animations */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .transition-transform {
+      transition-property: transform;
+    }
+    .duration-600 {
+      transition-duration: 600ms;
+    }
+    
+    /* Font variant for numerical displays */
+    .font-variant-numeric {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="initial-loader">
+      <div class="loader-content">
+        <div class="loader-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11c0 4.4-3.6 8-8 8a8 8 0 0 1-8-8c0-4.4 3.6-8 8-8"></path>
+            <path d="M2 6h10"></path>
+            <path d="M5 12h7"></path>
+            <path d="M9 18h7"></path>
+            <path d="M19 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+          </svg>
+        </div>
+        <div class="loader-text">Loading WordSpace...</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Check for dark mode preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
